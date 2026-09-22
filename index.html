@@ -16,18 +16,30 @@ img{
   max-width:400px;
   width:100%;
   margin-bottom:30px;
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(255,105,180,.45);
+  animation:imgFloat 6s ease-in-out infinite;
 }
 h1{
   font-size:clamp(60px,12vw,180px);
-  background:linear-gradient(90deg,#ff69b4,#ff1493,#ff4500);
+  background:linear-gradient(90deg,#ff69b4,#ff1493,#ff4500,#ff69b4);
+  background-size:300% 100%;
   -webkit-background-clip:text;
   color:transparent;
-  animation:glow 2s infinite alternate;
+  animation:glow 2s infinite alternate, shine 4s linear infinite;
   margin:0;
 }
 @keyframes glow{
   0%{filter:drop-shadow(0 0 5px pink)}
   100%{filter:drop-shadow(0 0 20px red)}
+}
+@keyframes shine{
+  0%{background-position:0% 50%}
+  100%{background-position:300% 50%}
+}
+@keyframes imgFloat{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-8px) scale(1.02)}
 }
 /* 播放按钮样式 */
 #playBtn{
@@ -36,12 +48,48 @@ h1{
   font-size:18px;
   border:none;
   border-radius:30px;
-  background:#ff69b4;
+  background:linear-gradient(90deg,#ff69b4,#ff1493);
   color:#fff;
   cursor:pointer;
+  box-shadow:0 0 20px rgba(255,105,180,.6);
+  transition:transform .2s ease, box-shadow .2s ease;
+  position:relative;
+  overflow:hidden;
 }
 #playBtn:hover{
-  background:#ff3b80;
+  background:linear-gradient(90deg,#ff3b80,#ff4500);
+  box-shadow:0 0 30px rgba(255,69,0,.8);
+  transform:scale(1.06);
+}
+#playBtn:active{
+  transform:scale(.97);
+}
+#playBtn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center, rgba(255,255,255,.4), transparent 60%);
+  opacity:0;
+  transition:opacity .3s;
+  pointer-events:none;
+}
+#playBtn:hover::before{
+  opacity:1;
+}
+/* 点击波纹 */
+.ripple{
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.55);
+  transform:scale(0);
+  animation:ripple .6s linear;
+  pointer-events:none;
+}
+@keyframes ripple{
+  to{
+    transform:scale(4);
+    opacity:0;
+  }
 }
 </style>
 </head>
@@ -51,17 +99,14 @@ h1{
   <h1>孙怡微博</h1>
   <button id="playBtn">🎵 点击播放音乐</button>
 </div>
-
 <audio id="bgMusic" loop>
   <source src="./yihan.mp3" type="audio/mpeg">
   浏览器不支持音频
-
 <script>
 const bgMusic = document.getElementById('bgMusic');
 const playBtn = document.getElementById('playBtn');
 let isPlaying = false;
-
-playBtn.onclick = function(){
+playBtn.onclick = function(e){
   if(!isPlaying){
     bgMusic.play();
     playBtn.innerText = "⏸ 暂停音乐";
@@ -71,8 +116,17 @@ playBtn.onclick = function(){
     playBtn.innerText = "🎵 点击播放音乐";
     isPlaying = false;
   }
+  // 点击波纹效果
+  const rect = playBtn.getBoundingClientRect();
+  const ripple = document.createElement("span");
+  const size = Math.max(rect.width, rect.height);
+  ripple.className = "ripple";
+  ripple.style.width = ripple.style.height = size + "px";
+  ripple.style.left = (e.clientX - rect.left - size / 2) + "px";
+  ripple.style.top = (e.clientY - rect.top - size / 2) + "px";
+  playBtn.appendChild(ripple);
+  setTimeout(()=>ripple.remove(), 600);
 }
 </script>
-
 </body>
 </html>
