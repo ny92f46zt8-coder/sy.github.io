@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{margin:0;background:#000}
+/* 整体容器：垂直排列图片+文字，页面居中 */
+.box{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+}
+img{
+max-width:600px; /* 控制图片最大宽度，按需改 */
+margin-bottom:30px; /* 图片和文字之间的间距 */
+}
+h1{
+font-size:180px;
+background:linear-gradient(90deg,#ff69b4,#ff1493,#ff4500);
+-webkit-background-clip:text;
+color:transparent;
+animation:glow 2s infinite alternate;
+margin:0;
+}
+@keyframes glow{
+0%{filter:drop-shadow(0 0 5px pink)}
+100%{filter:drop-shadow(0 0 20px red)}
+}
+</style>
+</head>
+<body>
+<div class="box">
+<!-- 重点：img标签，src放图片 -->
+<img src="https://img2.baidu.com/it/u=1245709357,4267765407&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=773" alt="孙怡">
+<h1>孙怡微博</h1>
+</div>
+</body>
+</html>
