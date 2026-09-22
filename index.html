@@ -1,41 +1,49 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-<audio controls loop>
-  <source src="./yihan.mp3" type="audio/mpeg">
 *{margin:0;background:#000}
-/* 整体容器：垂直排列图片+文字，页面居中 */
 .box{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-text-align:center;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  width:90%;
 }
 img{
-max-width:600px; /* 控制图片最大宽度，按需改 */
-margin-bottom:30px; /* 图片和文字之间的间距 */
+  max-width:400px;
+  width:100%;
+  margin-bottom:30px;
 }
 h1{
-font-size:180px;
-background:linear-gradient(90deg,#ff69b4,#ff1493,#ff4500);
--webkit-background-clip:text;
-color:transparent;
-animation:glow 2s infinite alternate;
-margin:0;
+  font-size:clamp(60px,12vw,180px);
+  background:linear-gradient(90deg,#ff69b4,#ff1493,#ff4500);
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:glow 2s infinite alternate;
+  margin:0;
 }
 @keyframes glow{
-0%{filter:drop-shadow(0 0 5px pink)}
-100%{filter:drop-shadow(0 0 20px red)}
+  0%{filter:drop-shadow(0 0 5px pink)}
+  100%{filter:drop-shadow(0 0 20px red)}
+}
+/* 音频控件样式 */
+audio{
+  margin-top:20px;
 }
 </style>
 </head>
 <body>
 <div class="box">
-<!-- 重点：img标签，src放图片 -->
-<img src="https://img2.baidu.com/it/u=1245709357,4267765407&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=773" alt="孙怡">
-<h1>孙怡微博</h1>
+  <img src="替换无防盗链图片直链" alt="孙怡">
+  <h1>孙怡微博</h1>
+  <!-- 背景音乐核心代码 -->
+  <audio controls loop>
+    <source src="音频文件链接.mp3" type="audio/mpeg">
+    你的浏览器不支持音频播放
+  
 </div>
 </body>
 </html>
