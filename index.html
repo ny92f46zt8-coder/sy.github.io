@@ -29,16 +29,37 @@ h1{
   animation:glow 2s infinite alternate, shine 4s linear infinite;
   margin:0;
 }
-/* 新增：文字样式，你可以改颜色、字号、间距 */
-.desc-text{
-  font-size:22px;
-  color:#c81b6b;
-  margin:16px 0;
+/* 渐变流光文字 带发光 */
+.gradient-text {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+
+  background: linear-gradient(
+    90deg,
+    #ff69b4,
+    #ff1493,
+    #ff4500,
+    #ff69b4,
+    #c71585
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.6));
+  animation: textFlow 4s linear infinite;
+  margin: 16px 0;
 }
-.small-text{
-  font-size:16px;
-  color:#ff4785;
-  margin-bottom:24px;
+/* 流光动画 */
+@keyframes textFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
 }
 
 @keyframes glow{
@@ -110,10 +131,8 @@ h1{
   <img src="./sunyi.jpg" alt="孙怡">
   <h1>孙怡微博</h1>
 
-  <!-- ========== 这里是新加的文本 ========== -->
-  <p class="desc-text">永远热烈，永远闪闪发光✨</p>
-  <p class="small-text">温柔与美好，如期而至</p>
-  <!-- =================================== -->
+  <p class="gradient-text">永远热烈，永远闪闪发光✨</p>
+  <p class="gradient-text">温柔与美好，如期而至</p>
 
   <button id="playBtn">🎵 点击播放音乐</button>
 </div>
