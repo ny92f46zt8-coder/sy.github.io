@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-*{margin:0;background:#ffe4e9}
+*{margin:0;background:#ffc0cb}
 .box{
   position:absolute;
   top:50%;
@@ -29,6 +29,18 @@ h1{
   animation:glow 2s infinite alternate, shine 4s linear infinite;
   margin:0;
 }
+/* 新增：文字样式，你可以改颜色、字号、间距 */
+.desc-text{
+  font-size:22px;
+  color:#c81b6b;
+  margin:16px 0;
+}
+.small-text{
+  font-size:16px;
+  color:#ff4785;
+  margin-bottom:24px;
+}
+
 @keyframes glow{
   0%{filter:drop-shadow(0 0 5px pink)}
   100%{filter:drop-shadow(0 0 20px red)}
@@ -97,11 +109,19 @@ h1{
 <div class="box">
   <img src="./sunyi.jpg" alt="孙怡">
   <h1>孙怡微博</h1>
+
+  <!-- ========== 这里是新加的文本 ========== -->
+  <p class="desc-text">永远热烈，永远闪闪发光✨</p>
+  <p class="small-text">温柔与美好，如期而至</p>
+  <!-- =================================== -->
+
   <button id="playBtn">🎵 点击播放音乐</button>
 </div>
 <audio id="bgMusic" loop>
   <source src="./yihan.mp3" type="audio/mpeg">
   浏览器不支持音频
+
+
 <script>
 const bgMusic = document.getElementById('bgMusic');
 const playBtn = document.getElementById('playBtn');
